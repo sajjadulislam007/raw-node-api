@@ -9,8 +9,12 @@
 // modules scaffolding
 const handler = {};
 
-handler.sampleHandler = () => {
-  console.log('Sample Route')
+handler.sampleHandler = (requestPropertise, callback) => {
+  console.log(requestPropertise);
+
+  callback(200, {
+    message: 'This is the simple route'
+  })
 };
 
 
