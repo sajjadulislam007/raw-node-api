@@ -21,7 +21,7 @@ const app = {};
 // };
 
 // data.create("test", "newFile", { name: "Bangladesh", langulage: "Bangla" }, (err) => {
-//   console.log("error was" + err);
+//   console.log("error was " + err);
 // });
 
 // data.read("test", "newFile", (err, data) => {
