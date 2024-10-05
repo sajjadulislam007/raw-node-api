@@ -8,45 +8,28 @@
 // Dependencies
 const http = require("http");
 
-const { handleReqRes } = require("./helper/handleReqRes");
-const environment = require("./helper/environments");
-const data = require("./lib/data");
+// handle request and response
+const { handleRegRes } = require("./helper/handleReqRes");
 
 //App object - module scaffolding
 const app = {};
 
-//Configuration
-// app.config = {
-//   port: 3000,
-// };
-
-// data.create("test", "newFile", { name: "Bangladesh", langulage: "Bangla" }, (err) => {
-//   console.log("error was " + err);
-// });
-
-// data.read("test", "newFile", (err, data) => {
-//   console.log(err, data);
-// });
-
-// data.update("test", "newFile", { name: "England", langulage: "English" }, (err) => {
-//   console.log(err);
-// });
-
-// data.delete("test", "newFile", (err) => {
-//   console.log(err);
-// });
+// configuration
+app.config = {
+  port: 3000,
+};
 
 //Create Server
 app.createServer = () => {
-  const server = http.createServer(app.handleReqRes);
+  const server = http.createServer(app.handleRegRes);
 
-  server.listen(environment.port, () => {
-    console.log(`Listening to port ${environment.port}`);
+  server.listen(app.config.port, () => {
+    console.log(`Listining to the port ${app.config.port}`);
   });
 };
 
 //handle request response
-app.handleReqRes = handleReqRes;
+app.handleRegRes = handleRegRes;
 
 //start the server
 app.createServer();

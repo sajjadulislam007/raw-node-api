@@ -8,12 +8,6 @@
 // modules scaffolding
 const handler = {};
 
-handler.aboutHandler = (requestPropertise, callback) => {
-  console.log(requestPropertise);
-
-  callback(200, {
-    message: "This is the about route",
-  });
-};
+handler.aboutHandler = () => {};
 
 module.exports = handler;

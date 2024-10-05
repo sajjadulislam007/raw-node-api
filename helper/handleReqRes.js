@@ -7,38 +7,23 @@
 
 // dependencies
 const url = require("url");
-const { StringDecoder } = require("node:string_decoder");
-const routes = require("../routes");
-const { notFoundHandler } = require("../handlers/routeHandler/notFoundHandler");
+const { StringDecoder } = require("string_decoder");
 
 // module scaffolding
 const handler = {};
 
-handler.handleReqRes = (req, res) => {
+handler.handleRegRes = (req, res) => {
   //request handling
+  //get the url and parse it
   const parsedUrl = url.parse(req.url, true);
   const path = parsedUrl.pathname;
-  const trimmedPath = path.replace(/^\/+|\/+$/g, "");
+  const trimedPath = path.replace(/\/+|\/+$/g, "");
   const method = req.method.toLowerCase();
   const queryStringObject = parsedUrl.query;
-  const headerObject = req.headers;
+  const headersObject = req.headers;
 
-  const requestPropertise = {
-    parsedUrl,
-    path,
-    parsedUrl,
-    method,
-    queryStringObject,
-    headerObject,
-  };
-
-  const decoder = new StringDecoder("utf8");
-
-  console.log(decoder);
-
+  const decoder = new StringDecoder("utf-8");
   let realData = "";
-
-  const chosenHandler = routes[trimmedPath] ? routes[trimmedPath] : notFoundHandler;
 
   req.on("data", (buffer) => {
     realData += decoder.write(buffer);
@@ -47,21 +32,13 @@ handler.handleReqRes = (req, res) => {
   req.on("end", () => {
     realData += decoder.end();
 
-    chosenHandler(requestPropertise, (statusCode, payLoad) => {
-      const typeOfstatusCode = typeof statusCode === "number" ? statusCode : 500;
-
-      const typeOfPayLoad = typeof payLoad === "object" ? payLoad : {};
-
-      const payLoadString = JSON.stringify(typeOfPayLoad);
-
-      // Return the final response
-      res.writeHead(typeOfstatusCode);
-      res.end(payLoadString);
-    });
-
-    //response handle
-    // res.end('Hello Sajjad');
+    console.log(realData);
+    console.log("headersObject : ", headersObject);
   });
+
+  console.log("headersObject : ", headersObject);
+  //respons handle
+  res.end("Hello World!");
 };
 
 module.exports = handler;
