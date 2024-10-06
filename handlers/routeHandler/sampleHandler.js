@@ -8,6 +8,12 @@
 // modules scaffolding
 const handler = {};
 
-handler.sampleHandler = () => {};
+handler.sampleHandler = (requestPropertise, callBack) => {
+  console.log(requestPropertise);
+
+  callBack(200, {
+    message: "This is a Sample route",
+  });
+};
 
 module.exports = handler;

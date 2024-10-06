@@ -6,9 +6,12 @@
  */
 
 //dependencies
+const { sampleHandler } = require("./handlers/routeHandler/sampleHandler");
 
 //scaffolding
 
-const routes = {};
+const routes = {
+  sample: sampleHandler,
+};
 
 module.exports = routes;

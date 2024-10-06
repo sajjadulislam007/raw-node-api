@@ -10,21 +10,36 @@ const http = require("http");
 
 // handle request and response
 const { handleRegRes } = require("./helper/handleReqRes");
+const appEnvironment = require("./helper/environments");
+const data = require("./lib/data");
 
 //App object - module scaffolding
 const app = {};
 
-// configuration
-app.config = {
-  port: 3000,
-};
+//testing file system
+// data.create(
+//   "test",
+//   "newFile",
+//   { name: "bangladesh", language: "bangla" },
+//   (err) => {
+//     console.log("Error Was :", err);
+//   },
+// );
+// data.read("test", "newFile", (err, result) => {
+//   console.log(err, result);
+// });
+// data.delete("test", "newFile", (err) => {
+//   console.log(err);
+// });
 
 //Create Server
 app.createServer = () => {
   const server = http.createServer(app.handleRegRes);
 
-  server.listen(app.config.port, () => {
-    console.log(`Listining to the port ${app.config.port}`);
+  server.listen(appEnvironment.port, () => {
+    console.log(`Listining to the port ${appEnvironment.port}`);
+
+    console.log(appEnvironment.port);
   });
 };
 
