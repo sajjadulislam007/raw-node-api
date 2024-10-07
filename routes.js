@@ -10,6 +10,7 @@ const { sampleHandler } = require("./handlers/routeHandler/sampleHandler");
 const { userHandler } = require("./handlers/routeHandler/userhandler");
 const { aboutHandler } = require("./handlers/routeHandler/aboutHandler");
 const { contactHandler } = require("./handlers/routeHandler/contactHandler");
+const { tokenHandler } = require("./handlers/routeHandler/tokenHandler");
 
 //scaffolding
 
@@ -18,6 +19,7 @@ const routes = {
   user: userHandler,
   about: aboutHandler,
   contact: contactHandler,
+  token: tokenHandler,
 };
 
 module.exports = routes;

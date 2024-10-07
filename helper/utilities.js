@@ -42,5 +42,33 @@ utilities.stringHash = (string) => {
   }
 };
 
+// Create a random text based Token
+utilities.createRandomToken = (stringLength) => {
+  let length = stringLength;
+
+  // checking if the length is valid or not
+  length =
+    typeof stringLength === "number" && stringLength > 0 ? stringLength : false;
+
+  //checking and making the random token string
+  if (length) {
+    let possibleCharecters = "zbcdefghijklmnopqrstwxyz1234567890";
+    // initial variales
+    let output = "";
+    //looping thorugh the charecters and pushing the charecters to the variables
+    for (let i = 1; i <= possibleCharecters.length; i++) {
+      let randomCharecter = possibleCharecters.charAt(
+        Math.floor(Math.random() * possibleCharecters.length),
+      );
+
+      output += randomCharecter;
+    }
+
+    return output;
+  } else {
+    return false;
+  }
+};
+
 // export module
 module.exports = utilities;
