@@ -8,6 +8,12 @@
 // modules scaffolding
 const handler = {};
 
-handler.contactHandler = () => {};
+handler.contactHandler = (requestPropertise, callBack) => {
+  console.log(requestPropertise);
+
+  callBack(200, {
+    message: "This is a Contact route",
+  });
+};
 
 module.exports = handler;

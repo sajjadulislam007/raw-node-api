@@ -11,6 +11,7 @@ const { StringDecoder } = require("string_decoder");
 
 const routes = require("../routes");
 const { notFoundHandler } = require("../handlers/routeHandler/notFoundHandler");
+const { parseJson } = require("../helper/utilities");
 
 // module scaffolding
 const handler = {};
@@ -47,6 +48,8 @@ handler.handleRegRes = (req, res) => {
 
   req.on("end", () => {
     realData += decoder.end();
+
+    requestpropertise.body = parseJson(realData);
 
     chosenHandler(requestpropertise, (statusCode, payload) => {
       statusCode = typeof statusCode === "number" ? statusCode : 500;
